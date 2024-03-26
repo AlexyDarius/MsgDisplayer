@@ -1,5 +1,5 @@
 def generate_message_json(directory_path):
-    json_code = f'''{"message":"","display":"off"}
+    json_code = f'''{{"message":"","display":"off"}}
 '''
 
     with open(f"{directory_path}/msg-display/message.json", "w") as json_file:

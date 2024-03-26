@@ -23,6 +23,10 @@ include $_SERVER['DOCUMENT_ROOT']. '/includes/navbar.php'
             <div class="col-md-12">
                 <textarea id="editor" style="width: 80%; align-item: center"></textarea>
                 <button id="saveButton" style="margin-top:32px; margin-bottom: 32px">Sauvegarder et envoyer le message</button>
+                <p>Couleur de la boîte de message: <input type="color" id="bgColorPicker"></p>
+                <p style="margin-bottom: 0px">Couleur de la police: <input type="color" id="fontColorPicker"></p>
+                <br>
+                <button style="margin-bottom: 24px" id="saveColorsButton">Sauvegarder les couleurs</button>
                 <p style="font-weight: bold; text-decoration: underline">Afficher ce message :</p>
                 <input type="radio" id="displayOn" name="display" value="on"> Oui
                 <input type="radio" id="displayOff" name="display" value="off"> Non
