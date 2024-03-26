@@ -2,20 +2,55 @@ def generate_msgSaver_js(directory_path):
     js_code = f'''// Inside the script tag in the above HTML
 CKEDITOR.replace('editor');
 
-document.getElementById('saveButton').addEventListener('click', function() {{
-const userContent = CKEDITOR.instances.editor.getData();
-
-fetch('requires/save_message.php', {{
-    method: 'POST',
-    body: JSON.stringify({{ message: userContent }}),
-    headers: {{
-        'Content-Type': 'application/json'
-    }}
-}})
-.then(response => response.text())
+// Part of the script tag in the back-office page
+fetch('requires/get_message_state.php')
+.then(response => response.json())
 .then(data => {{
-    alert('Message saved!');
+    console.log(data); // Debugging: Log the fetched data
+    if (data.display === 'on') {{
+        document.getElementById('displayOn').checked = true;
+    }} else {{
+        document.getElementById('displayOff').checked = true;
+    }}
+    CKEDITOR.instances.editor.setData(data.message);
 }});
+
+// Event listener for Save button
+document.getElementById('saveButton').addEventListener('click', function() {{
+    const userContent = CKEDITOR.instances.editor.getData();
+
+    fetch('requires/save_message.php', {{
+        method: 'POST',
+        body: JSON.stringify({{ message: userContent }}),
+        headers: {{
+            'Content-Type': 'application/json'
+        }}
+    }})
+    .then(response => response.text())
+    .then(data => {{
+        alert("Contenu du message sauvegardé ! N'oubliez pas d'activer l'affichage du message");
+        window.location.reload(); // Reload the page
+    }});
+}});
+
+// Event listeners for radio buttons
+document.querySelectorAll('input[name="display"]').forEach(radio => {{
+    radio.addEventListener('change', function() {{
+        const displayStatus = this.value;
+
+        fetch('requires/save_display_status.php', {{
+            method: 'POST',
+            body: JSON.stringify({{ display: displayStatus }}),
+            headers: {{
+                'Content-Type': 'application/json'
+            }}
+        }})
+        .then(response => response.text())
+        .then(data => {{
+            alert("L'affichage a été reglé sur " + displayStatus.toUpperCase() + " !");
+            window.location.reload(); // Reload the page
+        }});
+    }});
 }});
 '''
 

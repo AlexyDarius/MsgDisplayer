@@ -23,9 +23,19 @@ include $_SERVER['DOCUMENT_ROOT']. '/includes/navbar.php'
             <div class="col-md-12">
                 <textarea id="editor" style="width: 80%; align-item: center"></textarea>
                 <button id="saveButton" style="margin-top:32px; margin-bottom: 32px">Sauvegarder et envoyer le message</button>
+                <p style="font-weight: bold; text-decoration: underline">Afficher ce message :</p>
+                <input type="radio" id="displayOn" name="display" value="on"> Oui
+                <input type="radio" id="displayOff" name="display" value="off"> Non
             </div>
         </div>
     </div>
+    <hr>
+    <h2 style="margin: 32px; font-weight: bold; text-align: center">Votre message</h2>
+
+<?php
+require $_SERVER['DOCUMENT_ROOT']. '/modules/msgdisplay/requires/displayer.php';
+?>
+
     </div>
         <p style="text-align: center; font-size: 24px"><a href="https://{main_domain}/">Revenir à l'accueil</a></p>
     </div>
