@@ -37,14 +37,14 @@ include $_SERVER['DOCUMENT_ROOT']. '/includes/navbar.php'
     <h2 style="margin: 32px; font-weight: bold; text-align: center">Votre message</h2>
 
 <?php
-require $_SERVER['DOCUMENT_ROOT']. '/modules/msgdisplay/requires/displayer.php';
+require $_SERVER['DOCUMENT_ROOT']. '/modules/msg-display/requires/displayer.php';
 ?>
 
     </div>
         <p style="text-align: center; font-size: 24px"><a href="https://{main_domain}/">Revenir à l'accueil</a></p>
     </div>
 
-    <script src="https://{main_domain}/modules/msgdisplay/js/msgSaver.js"></script>
+    <script src="https://{main_domain}/modules/msg-display/js/msgSaver.js"></script>
 
 <?php
 include $_SERVER['DOCUMENT_ROOT']. '/includes/footer.php'

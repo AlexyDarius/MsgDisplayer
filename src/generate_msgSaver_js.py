@@ -6,13 +6,20 @@ CKEDITOR.replace('editor');
 fetch('requires/get_message_state.php')
 .then(response => response.json())
 .then(data => {{
-    console.log(data); // Debugging: Log the fetched data
     if (data.display === 'on') {{
         document.getElementById('displayOn').checked = true;
     }} else {{
         document.getElementById('displayOff').checked = true;
     }}
     CKEDITOR.instances.editor.setData(data.message);
+}});
+
+// Fetch and set the initial color values
+fetch('requires/get_color.php')
+.then(response => response.json())
+.then(data => {{
+    document.getElementById('bgColorPicker').value = data.bgColor;
+    document.getElementById('fontColorPicker').value = data.fontColor;
 }});
 
 // Event listener for Save button
@@ -51,6 +58,23 @@ document.querySelectorAll('input[name="display"]').forEach(radio => {{
             window.location.reload(); // Reload the page
         }});
     }});
+}});
+
+document.getElementById('saveColorsButton').addEventListener('click', function() {{
+    const bgColor = document.getElementById('bgColorPicker').value;
+    const fontColor = document.getElementById('fontColorPicker').value;
+
+    fetch('requires/save_colors.php', {{
+        method: 'POST',
+        body: JSON.stringify({{ bgColor: bgColor, fontColor: fontColor }}),
+        headers: {{
+            'Content-Type': 'application/json'
+        }}
+    }}).then(response => response.text())
+      .then(data => {{
+        alert('Couleurs actualisées!');
+        window.location.reload(); // Reload the page
+      }});
 }});
 '''
 

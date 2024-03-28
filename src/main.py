@@ -10,6 +10,9 @@ from generate_save_message_php import generate_save_message_php
 from generate_style_css import generate_style_css
 from generate_get_message_state_php import generate_get_message_state_php
 from generate_save_display_status_php import generate_save_display_status_php
+from generate_colors_json import generate_colors_json
+from generate_get_color_php import generate_get_color_php
+from generate_save_colors_php import generate_save_colors_php
 
 def generate_files():
     directory_path = directory_var.get()
@@ -29,6 +32,9 @@ def generate_files():
         generate_style_css(directory_path, bg_color, primary_color)
         generate_get_message_state_php(directory_path)
         generate_save_display_status_php(directory_path)
+        generate_colors_json(directory_path)
+        generate_save_colors_php(directory_path)
+        generate_get_color_php(directory_path)
 
         result_label.config(text="Message Display files have been generated.")
 

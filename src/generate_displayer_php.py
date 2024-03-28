@@ -1,8 +1,8 @@
 def generate_displayer_php(directory_path, main_domain):
     php_code = f'''<?php
-if(file_exists('message.json') && file_exists('colors.json')) {{
-    $messageContent = file_get_contents('message.json');
-    $colorContent = file_get_contents('colors.json');
+if(file_exists($_SERVER['DOCUMENT_ROOT']. '/modules/msg-display/message.json') && file_exists($_SERVER['DOCUMENT_ROOT']. '/modules/msg-display/colors.json')) {{
+    $messageContent = file_get_contents($_SERVER['DOCUMENT_ROOT']. '/modules/msg-display/message.json');
+    $colorContent = file_get_contents($_SERVER['DOCUMENT_ROOT']. '/modules/msg-display/colors.json');
     $messageData = json_decode($messageContent, true);
     $colorData = json_decode($colorContent, true);
     

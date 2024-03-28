@@ -5,8 +5,6 @@ def generate_style_css(directory_path, bg_color, primary_color):
     border-radius: 12px;
     padding-top: 12px;
     padding-bottom: 12px;
-    margin-right: 12px;
-    margin-left: 12px;
 }}
 '''
 
